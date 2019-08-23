@@ -10,9 +10,6 @@
     <fileSets>
         <fileSet>
             <directory>images</directory>
-            <includes>
-                <include>**/images/*</include>
-            </includes>
             <outputDirectory></outputDirectory>
         </fileSet>
     </fileSets>
