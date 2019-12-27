@@ -6,12 +6,11 @@
 	<version>8.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-  <distributionManagement>
- 	  <repository>
-	    <id>zugpronexus.snapshots</id>
-			<name>Internal Build Integration Repository</name>
-			<url>http://zugpronexus:8081/nexus/content/repositories/build-snapshots/</url>
-		</repository>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus.ivyteam.io.snapshots</id>
+			<url>https://nexus.ivyteam.io/repository/maven-snapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 
   <build>
