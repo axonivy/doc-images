@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'maven:3.5.2-jdk-8'
+      image 'maven:3.6.3-jdk-11'
     }
   }
 
@@ -17,10 +17,15 @@ pipeline {
     stage('build') {
       steps {
         script {
-          maven cmd: "clean deploy"
+          def phase = isReleaseOrMasterBranch() ? 'deploy' : 'verify'
+          maven cmd: "clean ${phase}"
         }
         archiveArtifacts 'target/*.zip'
       }
     }
   }
+}
+
+def isReleaseOrMasterBranch() {
+  return env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release/') 
 }
