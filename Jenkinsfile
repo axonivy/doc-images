@@ -17,10 +17,15 @@ pipeline {
     stage('build') {
       steps {
         script {
-          maven cmd: "clean deploy"
+          def phase = isReleaseOrMasterBranch() ? 'deploy' : 'verify'
+          maven cmd: "clean ${phase}"
         }
         archiveArtifacts 'target/*.zip'
       }
     }
   }
+}
+
+def isReleaseOrMasterBranch() {
+  return env.BRANCH_NAME == 'master' || env.BRANCH_NAME.startsWith('release/') 
 }
