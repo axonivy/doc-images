@@ -1,3 +1,3 @@
-# README #
+# README
 
-Static images for documentation.
+Images for the Axon.ivy Product Documentation
