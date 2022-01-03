@@ -1,3 +1,3 @@
 # README
 
-Images for the Axon Ivy Product Documentation
+Images for the Axon Ivy Product documentation

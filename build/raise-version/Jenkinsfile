@@ -1,0 +1,41 @@
+pipeline {
+  agent {
+    docker {
+      image 'maven:3.6.3-jdk-11'
+    }
+  }
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '30'))
+  }
+
+  parameters {
+    string newVersion
+  }
+
+  triggers {
+    cron '@midnight'
+  }
+
+  stages {    
+    stage('build') {
+      steps {
+        script {
+          sh "mvn --batch-mode versions:set versions:commit -DnewVersion=${newVersion} -DprocessAllModules"
+        }
+      }
+    }
+
+    stage('pull-request') {
+      when {
+        anyOf {
+          triggerdBy 'UserIdCause'
+          triggerdBy 'UpStream'
+        }
+      }
+      steps {
+        bitbucketPullRequest branch: XYZ title: XYZ        
+      }
+    }
+  }
+}
