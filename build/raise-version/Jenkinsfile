@@ -34,7 +34,7 @@ pipeline {
         }
       }
       steps {
-        pullReqest branch: "raise-version" title: "Raise version to ${params.newVersion}"
+        pullRequest branch: "raise-version", message: "Raise version to ${params.newVersion}"
       }
     }
   }
