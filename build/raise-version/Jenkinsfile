@@ -21,7 +21,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          sh "mvn --batch-mode versions:set versions:commit -DnewVersion=${newVersion} -DprocessAllModules"
+          sh "mvn --batch-mode versions:set versions:commit -DnewVersion=${params.newVersion} -DprocessAllModules"
         }
       }
     }
