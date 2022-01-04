@@ -6,7 +6,7 @@ pipeline {
   }
 
   options {
-    buildDiscarder(logRotator(numToKeepStr: '30'))
+    buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
   parameters {
@@ -34,7 +34,7 @@ pipeline {
         }
       }
       steps {
-        bitbucketPullRequest branch: XYZ title: XYZ        
+        pullReqest branch: "raise-version" title: "Raise version to ${params.newVersion}"
       }
     }
   }
