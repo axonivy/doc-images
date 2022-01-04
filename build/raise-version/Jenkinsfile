@@ -29,8 +29,8 @@ pipeline {
     stage('pull-request') {
       when {
         anyOf {
-          triggerdBy 'UserIdCause'
-          triggerdBy 'UpStream'
+          triggeredBy 'UserIdCause'
+          triggeredBy 'UpStream'
         }
       }
       steps {
