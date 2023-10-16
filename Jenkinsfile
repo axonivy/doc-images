@@ -18,7 +18,7 @@ pipeline {
       steps {
         script {
           def phase = isReleaseOrMasterBranch() ? 'deploy' : 'verify'
-          maven cmd: "clean ${phase}"
+          maven cmd: "clean ${phase} -Duser.home=/var/maven"
         }
         archiveArtifacts 'target/*.zip'
       }
