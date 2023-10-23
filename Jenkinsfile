@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'maven:3.9.4-eclipse-temurin-17'
+      image 'maven:3.9.5-eclipse-temurin-21'
     }
   }
 
@@ -18,7 +18,7 @@ pipeline {
       steps {
         script {
           def phase = isReleaseOrMasterBranch() ? 'deploy' : 'verify'
-          maven cmd: "clean ${phase}"
+          maven cmd: "-Duser.home=/tmp clean ${phase}"
         }
         archiveArtifacts 'target/*.zip'
       }
