@@ -20,6 +20,9 @@ pipeline {
           def phase = isReleasingBranch() ? 'deploy' : 'verify'
           maven cmd: "clean ${phase}"
         }
+	withChecks('Maven Issues') {
+          recordIssues tools: [mavenConsole()], qualityGates: [[threshold: 1, type: 'TOTAL']]
+        }
         archiveArtifacts 'target/*.zip'
       }
     }
