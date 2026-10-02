@@ -22,7 +22,7 @@ pipeline {
         }
 	      withChecks('Maven Issues') {
           recordIssues tools: [mavenConsole()], qualityGates: [[threshold: 1, type: 'TOTAL']], filters: [
-            excludeMessage('Using credentials of server \'nexus.ivyteam.io\'.*')
+            excludeMessage('Using credentials of server.*')
           ]
         }
         archiveArtifacts 'target/*.zip'
